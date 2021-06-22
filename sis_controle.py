@@ -5,7 +5,7 @@ import pandas as pd
 
 def cad_fis(cad_fis):
         cad_fis = {'Nome: ' + input('Nome: ') + ' ' + 'Sobrenome: ' + input('Sobrenome: ') + ', ' +
-                   'Endereço: ' + input('Endereço: ') +  ', ' + 'Número: ' + input('Número: ') + ', ' +'Bairro: ' + input('Bairro: ')
+                   'Endereço: ' + input('Endereço: ') +  ', ' + 'Número: ' + input('Número: ') + ', ' +'Bairro: ' + input('Bairro: ') + ','
                    + 'Cidade: ' + input('Cidade: ') + ', ' + 'Estado: ' + input('Estado: ') + ', ' + 'Telefone: ' + input('Telefone: ')
                    + ', ' + 'Email: ' + input('Email: ') + ', ' + 'CPF: ' + input('CPF: ') }
         arquivo = open('cadastrofisico.csv', 'a')
@@ -18,7 +18,7 @@ def cad_fis(cad_fis):
 
 def cad_jur(cad_jur):
         cad_jur = {'Nome: ' + input('Nome: ') + ' ' + 'Sobrenome: ' + input('Sobrenome: ') + ', ' +
-                   'Endereço: ' + input('Endereço: ') +  ', ' + 'Número: ' + input('Número: ') + ', ' +'Bairro: ' + input('Bairro: ')
+                   'Endereço: ' + input('Endereço: ') +  ', ' + 'Número: ' + input('Número: ') + ', ' +'Bairro: ' + input('Bairro: ') + ','
                    + 'Cidade: ' + input('Cidade: ') + ', ' + 'Estado: ' + input('Estado: ') + ', ' + 'Telefone: ' + input('Telefone: ')
                    + ', ' + 'Email: ' + input('Email: ') + ', ' + 'CNPJ':  + input('CNPJ: ') }
         arquivo = open('cadastrojuridico.csv', 'a')
@@ -41,23 +41,36 @@ def cad_prod(cad_prod):
 
 
 def pesqfis(pesqfis):
-        df= pd.read_csv('cadastrofisico.csv', sep=';', header=None)
-        for n in df:
-            nome = [n][1]
-        
-        return print(nome)
+    nome = input('Insira o nome:')
+    with open('cadastrofisico.csv', 'r') as arquivo:
+        for f in arquivo.readlines():
+            if(f.find(nome) > -1):
+                print(f)
+            else:
+                print('Nome não encontrado.')
 
 
 
 def pesqjur(pesqjur):
-        return print(pd.read_csv('cadastrojuridico.csv', sep=' ', header=None))
+    nome = input('Insira o nome:')
+    with open('cadastrojuridico.csv', 'r') as arquivo:
+        for f in arquivo.readlines():
+            if (f.find(nome) > 1):
+                print(f)
+            else:
+                print('Nome não encontrado.')
 
 
 
 def pesqprod(pesqprod):
-        df = pd.read_csv('cadastroproduto.csv', sep=';', header=None)
-        c = df.rename(columns={0:'Nome produto'})
-        return print(c)
+    nome = input('Insira o nome:')
+    with open('cadastroproduto.csv', 'r') as arquivo:
+        for f in arquivo.readlines():
+            if (f.find(nome) > -1):
+                print(f)
+            else:
+                print('Produto não encontrado.')
+
 
 
 
